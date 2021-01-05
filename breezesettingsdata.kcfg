@@ -14,6 +14,28 @@
        <max>255</max>
     </entry>
 
+    <entry name="FrameRadius" type = "Int">
+       <default>3</default>
+       <min>3</min>
+       <max>48</max>
+    </entry>
+
+    <entry name="LeftPadding" type = "Int">
+      <default>0</default>
+      <min>0</min>
+      <max>48</max>
+    </entry>
+
+    <entry name="RightPadding" type = "Int">
+      <default>0</default>
+      <min>0</min>
+      <max>48</max>
+    </entry>
+
+      <entry name="EnableDBusCallback" type="Bool">
+          <default>true</default>
+      </entry>
+
     <!-- shadow -->
     <entry name="ShadowSize" type = "Enum">
       <choices>
@@ -34,6 +56,18 @@
     <entry name="OutlineCloseButton" type = "Bool">
         <default>true</default>
     </entry>
+
+    <entry name="ShowCloseButtonSymbol" type = "Bool">
+        <default>false</default>
+    </entry>
+    <entry name="ShowMaximizeButtonSymbol" type = "Bool">
+        <default>false</default>
+    </entry>
+    <entry name="ShowMinimizeButtonSymbol" type = "Bool">
+        <default>false</default>
+    </entry>
+
+
 
   </group>
 
@@ -101,6 +135,18 @@
 
     <entry name="MacOSButtons" type = "Bool">
         <default>true</default>
+    </entry>
+
+    <entry name="DeduceBackgroundColor" type = "Bool">
+        <default>true</default>
+    </entry>
+
+    <entry name="DarkTextColor" type = "Color">
+        <default>31, 31, 31</default>
+    </entry>
+
+    <entry name="LightTextColor" type = "Color">
+       <default>240, 240, 240</default>
     </entry>
 
     <entry name="BackgroundOpacity" type = "Int">

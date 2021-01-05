@@ -7,11 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>428</width>
-    <height>418</height>
+    <height>682</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -24,19 +33,6 @@
        <string>General</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Tit&amp;le alignment:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="buddy">
-          <cstring>titleAlignment</cstring>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <widget class="QComboBox" name="titleAlignment">
          <item>
@@ -61,62 +57,7 @@
          </item>
         </widget>
        </item>
-       <item row="0" column="2">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>B&amp;utton size:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="buddy">
-          <cstring>buttonSize</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QComboBox" name="buttonSize">
-         <item>
-          <property name="text">
-           <string>Tiny</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string comment="@item:inlistbox Button size:">Small</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string comment="@item:inlistbox Button size:">Medium</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string comment="@item:inlistbox Button size:">Large</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string comment="@item:inlistbox Button size:">Very Large</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="3">
+       <item row="7" column="0" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLabel" name="titleMarginLabel">
@@ -147,55 +88,92 @@
          </item>
         </layout>
        </item>
-       <item row="3" column="0" colspan="3">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="btnSpacingLabel">
-           <property name="text">
-            <string>Button spacing:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="btnSpacingSpinBox">
-           <property name="suffix">
-            <string> px</string>
-           </property>
-           <property name="prefix">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_7">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item row="4" column="0" colspan="3">
-        <widget class="QCheckBox" name="drawBorderOnMaximizedWindows">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>Allow resizing maximized windows from window edges</string>
+          <string>B&amp;utton size:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="buddy">
+          <cstring>buttonSize</cstring>
          </property>
         </widget>
        </item>
-       <item row="5" column="0" colspan="3">
-        <widget class="QCheckBox" name="drawBackgroundGradient">
-         <property name="text">
-          <string>Draw titlebar background gradient</string>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="opacitySpinBox">
+         <property name="suffix">
+          <string> %</string>
+         </property>
+         <property name="maximum">
+          <number>100</number>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="13" column="0">
+        <widget class="QLabel" name="label_darkTextColor">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Dark text color:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="1">
+        <widget class="KColorButton" name="darkTextColor">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="0" colspan="3">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="buttonSize">
+         <item>
+          <property name="text">
+           <string>Tiny</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string comment="@item:inlistbox ButtonBase size:">Small</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string comment="@item:inlistbox ButtonBase size:">Medium</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string comment="@item:inlistbox ButtonBase size:">Large</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string comment="@item:inlistbox ButtonBase size:">Very Large</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="11" column="0">
         <widget class="QLabel" name="label_7">
          <property name="enabled">
           <bool>false</bool>
@@ -208,65 +186,78 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="1" alignment="Qt::AlignLeft">
-        <widget class="QSpinBox" name="gradientSpinBox">
+       <item row="9" column="0" colspan="3">
+        <widget class="QCheckBox" name="drawBorderOnMaximizedWindows">
+         <property name="text">
+          <string>Allow resizing maximized windows from window edges</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0" colspan="3">
+        <widget class="QCheckBox" name="deduceBackgroundColor">
+         <property name="text">
+          <string>Deduce background color</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Opacity:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Tit&amp;le alignment:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="buddy">
+          <cstring>titleAlignment</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0" colspan="3">
+        <widget class="QCheckBox" name="drawBackgroundGradient">
+         <property name="text">
+          <string>Draw titlebar background gradient</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QLabel" name="label_lightTextColor">
          <property name="enabled">
           <bool>false</bool>
          </property>
-         <property name="suffix">
-          <string> %</string>
-         </property>
-         <property name="maximum">
-          <number>100</number>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0" colspan="3">
-        <widget class="QCheckBox" name="drawSizeGrip">
          <property name="text">
-          <string>Add handle to resize windows with no border</string>
+          <string>Light text color:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="8" column="0" colspan="3">
-        <widget class="QCheckBox" name="macOSButtons">
-         <property name="text">
-          <string>macOS-like buttons</string>
+       <item row="0" column="2">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
-        </widget>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
-       <item row="9" column="0" colspan="3">
-        <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0,1">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Opacity:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QSpinBox" name="opacitySpinBox">
-           <property name="suffix">
-            <string> %</string>
-           </property>
-           <property name="maximum">
-            <number>100</number>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <spacer name="horizontalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>5</width>
-             <height>5</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
+       <item row="15" column="0" colspan="3">
+        <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0">
          <item row="1" column="0" colspan="3">
           <widget class="QGroupBox" name="groupBox">
            <property name="title">
@@ -360,8 +351,8 @@
            </layout>
           </widget>
          </item>
-         <item row="1" column="3">
-          <spacer name="horizontalSpacer_2">
+         <item row="0" column="2">
+          <spacer name="horizontalSpacer_6">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -375,18 +366,59 @@
          </item>
         </layout>
        </item>
-       <item row="10" column="0" colspan="3">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+       <item row="8" column="0" colspan="3">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="btnSpacingLabel">
+           <property name="text">
+            <string>ButtonBase spacing:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="btnSpacingSpinBox">
+           <property name="suffix">
+            <string> px</string>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="14" column="1">
+        <widget class="KColorButton" name="lightTextColor">
+         <property name="enabled">
+          <bool>false</bool>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
+        </widget>
+       </item>
+       <item row="11" column="1" alignment="Qt::AlignLeft">
+        <widget class="QSpinBox" name="gradientSpinBox">
+         <property name="enabled">
+          <bool>false</bool>
          </property>
-        </spacer>
+         <property name="suffix">
+          <string> %</string>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -481,27 +513,27 @@
         <widget class="QComboBox" name="shadowSize">
          <item>
           <property name="text">
-           <string comment="@item:inlistbox Button size:">None</string>
+           <string comment="@item:inlistbox ButtonBase size:">None</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string comment="@item:inlistbox Button size:">Small</string>
+           <string comment="@item:inlistbox ButtonBase size:">Small</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string comment="@item:inlistbox Button size:">Medium</string>
+           <string comment="@item:inlistbox ButtonBase size:">Medium</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string comment="@item:inlistbox Button size:">Large</string>
+           <string comment="@item:inlistbox ButtonBase size:">Large</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string comment="@item:inlistbox Button size:">Very Large</string>
+           <string comment="@item:inlistbox ButtonBase size:">Very Large</string>
           </property>
          </item>
         </widget>
@@ -615,7 +647,6 @@
   <tabstop>btnSpacingSpinBox</tabstop>
   <tabstop>drawBorderOnMaximizedWindows</tabstop>
   <tabstop>drawBackgroundGradient</tabstop>
-  <tabstop>drawSizeGrip</tabstop>
   <tabstop>animationsEnabled</tabstop>
   <tabstop>animationsDuration</tabstop>
   <tabstop>shadowSize</tabstop>
@@ -631,12 +662,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>34</x>
-     <y>194</y>
+     <x>38</x>
+     <y>41</y>
     </hint>
     <hint type="destinationlabel">
-     <x>84</x>
-     <y>221</y>
+     <x>47</x>
+     <y>50</y>
     </hint>
    </hints>
   </connection>
@@ -647,12 +678,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>194</y>
+     <x>97</x>
+     <y>41</y>
     </hint>
     <hint type="destinationlabel">
-     <x>141</x>
-     <y>229</y>
+     <x>91</x>
+     <y>50</y>
     </hint>
    </hints>
   </connection>
@@ -663,12 +694,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>222</x>
-     <y>160</y>
+     <x>226</x>
+     <y>244</y>
     </hint>
     <hint type="destinationlabel">
-     <x>166</x>
-     <y>188</y>
+     <x>202</x>
+     <y>282</y>
     </hint>
    </hints>
   </connection>
@@ -679,12 +710,76 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>222</x>
-     <y>160</y>
+     <x>226</x>
+     <y>244</y>
     </hint>
     <hint type="destinationlabel">
-     <x>64</x>
-     <y>57</y>
+     <x>68</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deduceBackgroundColor</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_darkTextColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>24</x>
+     <y>345</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>24</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deduceBackgroundColor</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>darkTextColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>24</x>
+     <y>345</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>129</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deduceBackgroundColor</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_lightTextColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>24</x>
+     <y>345</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>24</x>
+     <y>410</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deduceBackgroundColor</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lightTextColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>24</x>
+     <y>345</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>129</x>
+     <y>410</y>
     </hint>
    </hints>
   </connection>

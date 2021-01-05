@@ -51,9 +51,11 @@ namespace Breeze
         connect( m_ui.titleMarginSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), [=](int /*i*/){updateChanged();} );
         connect( m_ui.btnSpacingSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), [=](int /*i*/){updateChanged();} );
         connect( m_ui.drawBorderOnMaximizedWindows, &QAbstractButton::clicked, this, &ConfigWidget::updateChanged );
-        connect( m_ui.drawSizeGrip, &QAbstractButton::clicked, this, &ConfigWidget::updateChanged );
         connect( m_ui.drawBackgroundGradient, &QAbstractButton::clicked, this, &ConfigWidget::updateChanged );
-        connect( m_ui.macOSButtons, SIGNAL(clicked()), SLOT(updateChanged()) );
+
+        connect( m_ui.deduceBackgroundColor, SIGNAL(clicked()), SLOT(updateChanged()) );
+        connect( m_ui.darkTextColor, &KColorButton::changed, this, &ConfigWidget::updateChanged );
+        connect( m_ui.lightTextColor, &KColorButton::changed, this, &ConfigWidget::updateChanged );
         connect( m_ui.opacitySpinBox, QOverload<int>::of(&QSpinBox::valueChanged), [=](int /*i*/){updateChanged();} );
         connect( m_ui.gradientSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), [=](int /*i*/){updateChanged();} );
 
@@ -90,11 +92,12 @@ namespace Breeze
         m_ui.titleMarginSpinBox->setValue( m_internalSettings->extraTitleMargin() );
         m_ui.btnSpacingSpinBox->setValue( m_internalSettings->buttonSpacing() );
         m_ui.drawBorderOnMaximizedWindows->setChecked( m_internalSettings->drawBorderOnMaximizedWindows() );
-        m_ui.drawSizeGrip->setChecked( m_internalSettings->drawSizeGrip() );
         m_ui.drawBackgroundGradient->setChecked( m_internalSettings->drawBackgroundGradient() );
         m_ui.animationsEnabled->setChecked( m_internalSettings->animationsEnabled() );
         m_ui.animationsDuration->setValue( m_internalSettings->animationsDuration() );
-        m_ui.macOSButtons->setChecked( m_internalSettings->macOSButtons() );
+        m_ui.deduceBackgroundColor->setChecked( m_internalSettings->deduceBackgroundColor() );
+        m_ui.darkTextColor->setColor(m_internalSettings->darkTextColor());
+        m_ui.lightTextColor->setColor(m_internalSettings->lightTextColor());
         m_ui.opacitySpinBox->setValue( m_internalSettings->backgroundOpacity() );
         m_ui.gradientSpinBox->setValue( m_internalSettings->backgroundGradientIntensity() );
 
@@ -156,11 +159,12 @@ namespace Breeze
         m_internalSettings->setExtraTitleMargin( m_ui.titleMarginSpinBox->value() );
         m_internalSettings->setButtonSpacing( m_ui.btnSpacingSpinBox->value() );
         m_internalSettings->setDrawBorderOnMaximizedWindows( m_ui.drawBorderOnMaximizedWindows->isChecked() );
-        m_internalSettings->setDrawSizeGrip( m_ui.drawSizeGrip->isChecked() );
         m_internalSettings->setDrawBackgroundGradient( m_ui.drawBackgroundGradient->isChecked() );
         m_internalSettings->setAnimationsEnabled( m_ui.animationsEnabled->isChecked() );
         m_internalSettings->setAnimationsDuration( m_ui.animationsDuration->value() );
-        m_internalSettings->setMacOSButtons(m_ui.macOSButtons->isChecked());
+        m_internalSettings->setDeduceBackgroundColor(m_ui.deduceBackgroundColor->isChecked());
+        m_internalSettings->setDarkTextColor(m_ui.darkTextColor->color());
+        m_internalSettings->setLightTextColor(m_ui.lightTextColor->color());
         m_internalSettings->setBackgroundOpacity(m_ui.opacitySpinBox->value());
         m_internalSettings->setBackgroundGradientIntensity(m_ui.gradientSpinBox->value());
 
@@ -233,11 +237,12 @@ namespace Breeze
         m_ui.titleMarginSpinBox->setValue( m_internalSettings->extraTitleMargin() );
         m_ui.btnSpacingSpinBox->setValue( m_internalSettings->buttonSpacing() );
         m_ui.drawBorderOnMaximizedWindows->setChecked( m_internalSettings->drawBorderOnMaximizedWindows() );
-        m_ui.drawSizeGrip->setChecked( m_internalSettings->drawSizeGrip() );
         m_ui.drawBackgroundGradient->setChecked( m_internalSettings->drawBackgroundGradient() );
         m_ui.animationsEnabled->setChecked( m_internalSettings->animationsEnabled() );
         m_ui.animationsDuration->setValue( m_internalSettings->animationsDuration() );
-        m_ui.macOSButtons->setChecked( m_internalSettings->macOSButtons() );
+        m_ui.deduceBackgroundColor->setChecked( m_internalSettings->deduceBackgroundColor() );
+        m_ui.darkTextColor->setColor(m_internalSettings->darkTextColor());
+        m_ui.lightTextColor->setColor(m_internalSettings->lightTextColor());
         m_ui.opacitySpinBox->setValue( m_internalSettings->backgroundOpacity() );
         m_ui.gradientSpinBox->setValue( m_internalSettings->backgroundGradientIntensity() );
 
@@ -266,7 +271,6 @@ namespace Breeze
                 break;
         }
         m_ui.italicCheckBox->setChecked( f.italic() );
-
         m_ui.shadowSize->setCurrentIndex( m_internalSettings->shadowSize() );
         m_ui.shadowStrength->setValue( qRound(qreal(m_internalSettings->shadowStrength()*100)/255 ) );
         m_ui.shadowColor->setColor( m_internalSettings->shadowColor() );
@@ -284,13 +288,15 @@ namespace Breeze
         bool modified( false );
         QFont f; f.fromString( m_internalSettings->titleBarFont() );
 
-        if (m_ui.macOSButtons->isChecked() != m_internalSettings->macOSButtons()) modified = true;
+        if (m_ui.deduceBackgroundColor->isChecked() != m_internalSettings->deduceBackgroundColor()) modified = true;
+        if( m_ui.darkTextColor->color() != m_internalSettings->darkTextColor() ) modified = true;
+        if( m_ui.lightTextColor->color() != m_internalSettings->lightTextColor() ) modified = true;
+
         if( m_ui.titleAlignment->currentIndex() != m_internalSettings->titleAlignment() ) modified = true;
         else if( m_ui.buttonSize->currentIndex() != m_internalSettings->buttonSize() ) modified = true;
         else if( m_ui.titleMarginSpinBox->value() != m_internalSettings->extraTitleMargin() ) modified = true;
         else if( m_ui.btnSpacingSpinBox->value() != m_internalSettings->buttonSpacing() ) modified = true;
         else if( m_ui.drawBorderOnMaximizedWindows->isChecked() !=  m_internalSettings->drawBorderOnMaximizedWindows() ) modified = true;
-        else if( m_ui.drawSizeGrip->isChecked() !=  m_internalSettings->drawSizeGrip() ) modified = true;
         else if( m_ui.drawBackgroundGradient->isChecked() !=  m_internalSettings->drawBackgroundGradient() ) modified = true;
         else if( m_ui.opacitySpinBox->value() != m_internalSettings->backgroundOpacity() ) modified = true;
         else if( m_ui.gradientSpinBox->value() != m_internalSettings->backgroundGradientIntensity() ) modified = true;

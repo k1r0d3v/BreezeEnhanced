@@ -1,18 +1,15 @@
-# BreezeEnhanced
+# Solid
 
 ## Overview
 
-BreezeEnhanced is a fork of KDE Breeze decoration with the following changes:
+Solid is a fork of BreezeEnhanced decoration with the following changes:
+ - Code cleaning and refactor
+ - Title bar background color deduction
+ - Text color adaptable to background color
+ - Improved button feel and colorize, with easy theme addiction
+ - Easy creation of new button types
 
- * The optional title-bar gradient is smooth and has a configurable intensity.
- * The title-bar opacity is configurable.
- * A very mild light line is added to the top of title-bar (especially for dark color schemes) and the separator between title-bar and window is removed.
- * By default, the close, minimize and maximize buttons are macOS-like and their sizes change on mouse-over when animation is enabled.
- * The spacing between buttons is configurable.
- * Opaqueness, opacity override and flatness are added to the exception list properties.
- * Title-bar font is set indpendent from the KDE font settings (for use outside KDE).
-
-Please note that BreezeEnhanced is not related to the Breeze widget style. In fact, it is made to match various themes of the [Kvantum](https://github.com/tsujan/Kvantum) widget style but it works with all styles.
+Please note that BreezeEnhanced is not related to the Breeze widget style. In fact, it is made to match personal preferences.
 
 ## Installation
 
@@ -25,10 +22,21 @@ cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LI
 make
 sudo make install
 ```
-After the intallation, restart KWin by logging out and in. Then, BreezeEnhanced will appear in *System Settings &rarr; Application Style &rarr; Window Decorations*.
+After the installation, restart KWin by logging out and in. Then, BreezeEnhanced will appear in *System Settings &rarr; Application Style &rarr; Window Decorations*.
+
+## TODO
+ - Improve background color detection
+   - With shade support
+ - Adapt left, right and bottom borders to expand the client window
+ - Better animated icons
+ - DBus callback to notify background color under certain events
+ - Menu drawing over title bar
+
+## Notes
+ - Only support for offscreen client window rendering in X11, other platforms will fallback to screen capture
+ - Some features has been removed, like the grip
 
 ## Credits:
-
+Solid was started from [BreezeEnhanced](https://github.com/tsujan/BreezeEnhanced).
 BreezeEnhanced was started from [BreezeBlurred](https://github.com/alex47/BreezeBlurred), a former fork of Breeze with title-bar translucency and blurring.
-
 Needless to say, the main work behind BreezeEnhanced is the Breeze KWin decoration itself, which can be downloaded from <https://download.kde.org/stable/plasma/>.

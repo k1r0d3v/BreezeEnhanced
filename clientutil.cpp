@@ -146,40 +146,29 @@ QImage ClientUtil::renderToImage(int resultWidth, int resultHeight)
 
 QColor ClientUtil::topLineColor()
 {
-    auto image = renderToImage(-1, 1);
+    auto image = renderToImage(-1, 3);
     if (image.isNull())
         return {};
 
     // Get the color calculating the mode of the first row of the client pixels
-    std::priority_queue<QRgb> colors;
-    for (int i = 0; i < image.width(); ++i)
-        colors.push(image.pixelColor(i, 0).rgb());
-
-    // Calculate the mode
-    QRgb modeColor = colors.top();
-    int modeCount = 1;
-    QRgb currentColor = colors.top();
-    int currentCount = 1;
-
-    while (!colors.empty())
+    QMap<QRgb, int> colorCount;
+    QPair<QRgb, int> modeColor = {0, 0};
+    for (int j = 0; j < image.height() ; ++j)
     {
-        colors.pop();
-        auto color = colors.top();
-
-        if (color != currentColor)
+        for (int i = 0; i < image.width(); ++i)
         {
-            if (currentCount > modeCount)
-            {
-                modeCount = currentCount;
-                modeColor = currentColor;
-            }
+            auto color = image.pixelColor(i, j).rgb();
 
-            currentColor = color;
-            currentCount = 0;
+            if (!colorCount.contains(color))
+                colorCount[color] = 1;
+            else
+                colorCount[color] += 1;
+
+            auto count = colorCount[color];
+            if (count > modeColor.second)
+                modeColor = {color, count};
         }
-
-        currentCount++;
     }
 
-    return QColor::fromRgb(modeColor);
+    return QColor::fromRgb(modeColor.first);
 }

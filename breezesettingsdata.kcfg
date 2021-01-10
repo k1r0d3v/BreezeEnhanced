@@ -67,8 +67,17 @@
         <default>false</default>
     </entry>
 
+    <entry name="LatteActivatedWindowColorNotify" type="Bool">
+        <default>true</default>
+    </entry>
 
+    <entry name="LatteMaximizedWindowColorNotify" type="Bool">
+      <default>false</default>
+    </entry>
 
+    <entry name="HideTitleBarWhenMaximized" type="Bool">
+      <default>true</default>
+    </entry>
   </group>
 
   <group name="Windeco">

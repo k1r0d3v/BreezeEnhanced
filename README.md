@@ -4,10 +4,12 @@
 
 Solid is a fork of BreezeEnhanced decoration with the following changes:
  - Code cleaning and refactor
- - Title bar background color deduction
- - Text color adaptable to background color
+ - Title bar background color deduction of client window
+ - Text color adaptable to title bar background color
  - Improved button feel and colorize, with easy theme addiction
- - Easy creation of new button types
+ - Easy creation of new button types and solid themes
+ - Hide title bar on maximize 
+ - Support for latte-dock(modified) colorize in base title bar color for active and maximized windows
 
 Please note that BreezeEnhanced is not related to the Breeze widget style. In fact, it is made to match personal preferences.
 
@@ -29,8 +31,8 @@ After the installation, restart KWin by logging out and in. Then, BreezeEnhanced
    - With shade support
  - Adapt left, right and bottom borders to expand the client window
  - Better animated icons
- - DBus callback to notify background color under certain events
  - Menu drawing over title bar
+ - Configurable options with UI, latte-dock colorize mode, hide title bar, etc...
 
 ## Notes
  - Only support for offscreen client window rendering in X11, other platforms will fallback to screen capture

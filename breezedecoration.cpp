@@ -53,6 +53,8 @@
 #include <QColor>
 
 #include <memory>
+#include <QDBusMessage>
+#include <QDBusConnection>
 
 
 K_PLUGIN_FACTORY_WITH_JSON(
@@ -145,6 +147,24 @@ namespace
             return s_shadowParams[3];
         }
     }
+
+    void sendColorToLatteDock(WId wid, const QColor &color)
+    {
+        QDBusMessage m = QDBusMessage::createMethodCall("org.kde.lattedock",
+                                                        "/Latte",
+                                                        "org.kde.LatteDock",
+                                                        "windowColorScheme");
+        if (color.isValid())
+        {
+            m << QString::number(wid).append("-/").append(QString::number(color.rgb()));
+        }
+        else
+        {
+            m << QString::number(wid).append("-/reset");
+        }
+
+        QDBusConnection::sessionBus().send(m);
+    }
 }
 
 namespace Breeze
@@ -152,6 +172,7 @@ namespace Breeze
     static int g_decorationCount = 0;
     static int g_shadowSizeEnum = InternalSettings::ShadowLarge;
     static int g_shadowStrength = 255;
+    static int g_titleBarColorCheckInterval = 2000;
     static QColor g_shadowColor = Qt::black;
     static QSharedPointer<KDecoration2::DecorationShadow> g_shadowPointer;
     static QTimer g_titleBarColorTimer;
@@ -174,6 +195,10 @@ namespace Breeze
         }
 
         disconnect(&g_titleBarColorTimer, &QTimer::timeout, this, &Decoration::updateTitleBarColor);
+
+        // Delete the color scheme for this window in latte
+        if (m_internalSettings->latteActivatedWindowColorNotify() || m_internalSettings->latteMaximizedWindowColorNotify())
+            sendColorToLatteDock(m_clientWindow->winId(), {});
     }
 
     void Decoration::init()
@@ -228,7 +253,7 @@ namespace Breeze
         connect(m_client.data(), &KDecoration2::DecoratedClient::sizeChanged, this, &Decoration::updateTitleBar);
 
         connect(m_client.data(), &KDecoration2::DecoratedClient::widthChanged, this, &Decoration::updateButtonsGeometry);
-        connect(m_client.data(), &KDecoration2::DecoratedClient::maximizedChanged, this, &Decoration::updateButtonsGeometry);
+        connect(m_client.data(), &KDecoration2::DecoratedClient::maximizedChanged, this, &Decoration::clientMaximizedChanged);
         connect(m_client.data(), &KDecoration2::DecoratedClient::adjacentScreenEdgesChanged, this, &Decoration::updateButtonsGeometry);
         connect(m_client.data(), &KDecoration2::DecoratedClient::shadedChanged, this, &Decoration::updateButtonsGeometry);
 
@@ -236,14 +261,19 @@ namespace Breeze
         m_clientWindow = std::unique_ptr<QWindow>(QWindow::fromWinId(m_client->windowId()));
         m_clientUtil = std::make_unique<ClientUtil>(*m_clientWindow);
 
+        // m_internalSettings is available only after reconfigure() call
+        m_hideTitleBar = m_internalSettings->hideTitleBar();
+
         if (!g_titleBarColorTimer.isActive())
-            g_titleBarColorTimer.start(250);
+            g_titleBarColorTimer.start(g_titleBarColorCheckInterval);
         connect(&g_titleBarColorTimer, &QTimer::timeout, this, &Decoration::updateTitleBarColor);
 
         createButtons();
         createShadow();
 
+        QTimer::singleShot(5, this, &Decoration::updateTitleBarColor);
         QTimer::singleShot(20, this, &Decoration::updateTitleBarColor);
+        QTimer::singleShot(40, this, &Decoration::updateTitleBarColor);
     }
 
     void Decoration::setOpacity(qreal value)
@@ -292,6 +322,28 @@ namespace Breeze
             return  m_client->isActive() ? active : inactive;
     }
 
+    void Decoration::clientMaximizedChanged(bool maximized)
+    {
+        if (maximized)
+        {
+            if (m_titleBarColor.isValid() && m_internalSettings->latteMaximizedWindowColorNotify())
+                sendColorToLatteDock(m_clientWindow->winId(), m_titleBarColor);
+
+            if (m_internalSettings->hideTitleBarWhenMaximized())
+                m_hideTitleBar = true;
+        }
+        else
+        {
+            if (m_internalSettings->latteMaximizedWindowColorNotify())
+                sendColorToLatteDock(m_clientWindow->winId(), {});
+
+            if (m_internalSettings->hideTitleBarWhenMaximized())
+                m_hideTitleBar = false;
+        }
+
+        updateButtonsGeometry();
+    }
+
     void Decoration::updateTitleBar()
     {
         const bool maximized = isMaximized();
@@ -313,6 +365,8 @@ namespace Breeze
             if (!m_titleBarColor.isValid() || (m_titleBarColor.isValid() && m_titleBarColor != color))
             {
                 m_titleBarColor = color;
+                if (m_internalSettings->latteActivatedWindowColorNotify() || (m_internalSettings->latteMaximizedWindowColorNotify() && isMaximized()))
+                    sendColorToLatteDock(m_clientWindow->winId(), m_titleBarColor);
                 update();
             }
         }

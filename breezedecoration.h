@@ -150,7 +150,7 @@ namespace Breeze
 
         bool hideTitleBar() const
         {
-            return m_internalSettings->hideTitleBar() && !m_client->isShaded();
+            return m_hideTitleBar && !m_client->isShaded();
         }
 
 
@@ -165,6 +165,7 @@ namespace Breeze
         void updateTitleBar();
         void updateAnimationState();
         void updateTitleBarColor();
+        void clientMaximizedChanged(bool maximized);
 
     private:
         QPair<QRect,Qt::Alignment> captionRect() const;
@@ -216,6 +217,7 @@ namespace Breeze
 
         QColor m_titleBarColor = {};
         qreal m_opacity = 0; // Active state change opacity
+        bool m_hideTitleBar = false;
     };
 }
 

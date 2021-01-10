@@ -11,7 +11,7 @@ Solid is a fork of BreezeEnhanced decoration with the following changes:
  - Hide title bar on maximize 
  - Support for latte-dock(modified) colorize in base title bar color for active and maximized windows
 
-Please note that BreezeEnhanced is not related to the Breeze widget style. In fact, it is made to match personal preferences.
+Please note that Solid is not related to the Breeze widget style. In fact, it is made to match personal preferences.
 
 ## Installation
 

@@ -24,7 +24,7 @@ cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LI
 make
 sudo make install
 ```
-After the installation, restart KWin by logging out and in. Then, BreezeEnhanced will appear in *System Settings &rarr; Application Style &rarr; Window Decorations*.
+After the installation, restart KWin by logging out and in. Then, Solid will appear in *System Settings &rarr; Application Style &rarr; Window Decorations*.
 
 ## TODO
  - Improve background color detection

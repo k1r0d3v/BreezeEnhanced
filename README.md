@@ -35,7 +35,6 @@ After the installation, restart KWin by logging out and in. Then, BreezeEnhanced
  - Configurable options with UI, latte-dock colorize mode, hide title bar, etc...
 
 ## Notes
- - Only support for offscreen client window rendering in X11, other platforms will fallback to screen capture
  - Some features has been removed, like the grip
 
 ## Credits:

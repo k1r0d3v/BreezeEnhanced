@@ -172,7 +172,7 @@ namespace Breeze
     static int g_decorationCount = 0;
     static int g_shadowSizeEnum = InternalSettings::ShadowLarge;
     static int g_shadowStrength = 255;
-    static int g_titleBarColorCheckInterval = 2000;
+    static int g_titleBarColorCheckInterval = 4000;
     static QColor g_shadowColor = Qt::black;
     static QSharedPointer<KDecoration2::DecorationShadow> g_shadowPointer;
     static QTimer g_titleBarColorTimer;
@@ -271,9 +271,11 @@ namespace Breeze
         createButtons();
         createShadow();
 
-        QTimer::singleShot(5, this, &Decoration::updateTitleBarColor);
         QTimer::singleShot(20, this, &Decoration::updateTitleBarColor);
-        QTimer::singleShot(40, this, &Decoration::updateTitleBarColor);
+        QTimer::singleShot(50, this, &Decoration::updateTitleBarColor);
+        QTimer::singleShot(125, this, &Decoration::updateTitleBarColor);
+        QTimer::singleShot(250, this, &Decoration::updateTitleBarColor);
+        QTimer::singleShot(500, this, &Decoration::updateTitleBarColor);
     }
 
     void Decoration::setOpacity(qreal value)

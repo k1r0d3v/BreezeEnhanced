@@ -68,11 +68,11 @@
     </entry>
 
     <entry name="LatteActivatedWindowColorNotify" type="Bool">
-        <default>true</default>
+        <default>false</default>
     </entry>
 
     <entry name="LatteMaximizedWindowColorNotify" type="Bool">
-      <default>false</default>
+      <default>true</default>
     </entry>
 
     <entry name="HideTitleBarWhenMaximized" type="Bool">

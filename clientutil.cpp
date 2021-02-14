@@ -146,11 +146,11 @@ QImage ClientUtil::renderToImage(int resultWidth, int resultHeight)
 
 QColor ClientUtil::topLineColor()
 {
-    auto image = renderToImage(-1, 3);
+    auto image = renderToImage(-1, 2);
     if (image.isNull())
         return {};
 
-    // Get the color calculating the mode of the first row of the client pixels
+    // Get the color from the mode of the first two rows of the client pixels
     QMap<QRgb, int> colorCount;
     QPair<QRgb, int> modeColor = {0, 0};
     for (int j = 0; j < image.height() ; ++j)
